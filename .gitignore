@@ -1,0 +1,2 @@
+.terraform*
+db_creds.tf
