@@ -20,4 +20,3 @@ variable "instance_tags" {
  variable subnet_id {
    type        = string
  }
- 

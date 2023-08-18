@@ -17,10 +17,12 @@ module "ec2_instance" {
   key_name        = var.key_name
   vpc_security_group_ids=[module.security_group.security_group_id]
   subnet_id= module.public_subnet.my_public_subnet_id
+  
   instance_tags = {
     Name = "test-module"
   }
 }
+
  module "vpc"{
   source="./modules/vpc"
   cidr_block= "192.0.0.0/16"

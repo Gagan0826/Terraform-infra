@@ -7,4 +7,11 @@ resource "aws_instance" "ec2_instance" {
   associate_public_ip_address = true
   tags = var.instance_tags
 }
-
+resource "aws_eip" "ec2_eip" {
+  instance = aws_instance.ec2_instance.id
+  vpc=true
+}
+resource "aws_eip_association" "demo-eip-association" {
+  instance_id   = aws_instance.ec2_instance.id
+  allocation_id = aws_eip.ec2_eip.id
+}
