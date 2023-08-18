@@ -1,24 +1,20 @@
-
-
-  resource "aws_db_instance" "my_rds_db" {
+resource "aws_db_instance" "db_instance" {
+  identifier           = var.identifier
   db_name              = var.db_name
   engine               = var.engine
-  allocated_storage    = 20
+  allocated_storage    = var.allocated_storage
   storage_type         = var.storage_type
   engine_version       = var.engine_version
   instance_class       = var.instance_class
   username             = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string).username
   password             = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string).password
   port                 = var.db_port
-  publicly_accessible = false
-  skip_final_snapshot= true
-  vpc_security_group_ids = [aws_security_group.rds_private_sg.id]
-  db_subnet_group_name   = aws_db_subnet_group.private_db_subnet_group.name
+  publicly_accessible = var.publicly_accessible
+  skip_final_snapshot = var.skip_final_snapshot
+  vpc_security_group_ids = var.vpc_security_group_id
+  db_subnet_group_name   = var.db_subnet_group_name
 }
 
 data "aws_secretsmanager_secret_version" "credentials"{
-  secret_id ="week-1-rds"
+  secret_id = var.secret_id
 }
-
-
-

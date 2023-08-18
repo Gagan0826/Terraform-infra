@@ -1,2 +1,2 @@
 .terraform*
-db_creds.tf
+terraform.tfstate*

@@ -1,15 +1,3 @@
-variable "instance_type" {
-  type        = string
-}
-
-variable "ami" {
-  type        = string
-}
-
-variable "key_name" {
-  type        = string
-}
-
 variable "identifier" {
   type = string
 }
@@ -26,7 +14,6 @@ variable "allocated_storage" {
   type = number
 }
 
-
 variable "storage_type" {
   type = string
 }
@@ -41,6 +28,24 @@ variable "instance_class" {
 
 variable "db_port" {
   type = number
+}
+
+variable "publicly_accessible" {
+  type    = bool
+  default = false
+}
+
+variable "skip_final_snapshot" {
+  type    = bool
+  default = true
+}
+
+variable "vpc_security_group_id" {
+  type = list(string)
+}
+
+variable "db_subnet_group_name" {
+  type = string
 }
 
 variable "secret_id" {
