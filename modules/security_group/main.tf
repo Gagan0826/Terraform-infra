@@ -29,6 +29,12 @@ ingress {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+ingress {
+    from_port   = 31234
+    to_port     = 31234
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
    ingress {
     from_port   = 1080
