@@ -19,7 +19,7 @@ module "ec2_instance" {
   subnet_id= module.public_subnet.my_public_subnet_id
   
   instance_tags = {
-    Name = "test-module"
+    Name = "web-host"
   }
 }
 
