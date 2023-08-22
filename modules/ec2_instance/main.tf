@@ -6,6 +6,12 @@ resource "aws_instance" "ec2_instance" {
   subnet_id              = var.subnet_id
   associate_public_ip_address = true
   tags = var.instance_tags
+   root_block_device {
+    volume_size           = "20"
+    volume_type           = "gp2"
+    encrypted             = true
+    delete_on_termination = true
+  }
 }
 resource "aws_eip" "ec2_eip" {
   instance = aws_instance.ec2_instance.id
