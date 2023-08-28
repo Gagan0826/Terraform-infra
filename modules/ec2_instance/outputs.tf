@@ -1,3 +1,3 @@
 output "instance_id" {
-  value = aws_instance.ec2_instance.id
+  value = aws_instance.web_host_instance.id
 }

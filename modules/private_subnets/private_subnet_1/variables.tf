@@ -9,3 +9,6 @@ variable "cidr_block" {
 variable "availability_zone" {
   type=string
 }
+variable "name" {
+  type=string
+}

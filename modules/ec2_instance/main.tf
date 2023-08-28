@@ -1,4 +1,4 @@
-resource "aws_instance" "ec2_instance" {
+resource "aws_instance" "web_host_instance" {
   instance_type          = var.instance_type
   ami                    = var.ami
   key_name               = var.key_name
@@ -14,10 +14,10 @@ resource "aws_instance" "ec2_instance" {
   }
 }
 resource "aws_eip" "ec2_eip" {
-  instance = aws_instance.ec2_instance.id
+  instance = aws_instance.web_host_instance.id
   vpc=true
 }
 resource "aws_eip_association" "demo-eip-association" {
-  instance_id   = aws_instance.ec2_instance.id
+  instance_id   = aws_instance.web_host_instance.id
   allocation_id = aws_eip.ec2_eip.id
 }

@@ -25,15 +25,16 @@ module "ec2_instance" {
 
  module "vpc"{
   source="./modules/vpc"
-  cidr_block= "192.0.0.0/16"
+  cidr_block= var.vpc_cidr
+  name        = "build-infra-vpc"
  }
 
  module "public_subnet"{
   source="./modules/public_subnets"
   vpc_id  = module.vpc.vpc_id
-  cidr_block="192.0.0.0/24"
+  cidr_block=var.public_subnet_cidr
   availability_zone="ap-south-1a"
-  name="my-public-subnet"
+  name="public-subnet"
  }
 
 module "security_group"{
@@ -66,19 +67,22 @@ module "private_route_table" {
   source = "./modules/route_tables/private_route_table"
   vpc_id = module.vpc.vpc_id
   nat_gateway_id=module.nat_gateway.nat_gateway_id
+
 }
 
 module "private_subnet_1" {
   source = "./modules/private_subnets/private_subnet_1"
   vpc_id = module.vpc.vpc_id
-  cidr_block = "192.0.1.0/24"
+  cidr_block = var.private_subnet_1_cidr
   availability_zone = "ap-south-1a"
+  name="private-subnet-1"
 }
 module "private_subnet_2" {
   source = "./modules/private_subnets/private_subnet_2"
   vpc_id = module.vpc.vpc_id
-  cidr_block = "192.0.2.0/24"
+  cidr_block =  var.private_subnet_2_cidr
   availability_zone = "ap-south-1b"
+  name="private-subnet-2"
 }
 
 module "private_subnet_association" {
