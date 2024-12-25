@@ -64,6 +64,3 @@ variable "private_subnet_2_cidr" {
   type = string
 }
 
-variable "dummy variable" {
-  type = string
-}
